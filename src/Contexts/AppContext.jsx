@@ -14,17 +14,16 @@ const initialState = {
 const darkModeSupport = () => {
   if (
     localStorage.theme === "dark" ||
-    (!('theme' in localStorage) && (localStorage.theme !== 'light') && 
+    (!("theme" in localStorage) &&
+      localStorage.theme !== "light" &&
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark");
-    localStorage.setItem('theme', 'dark')
+    localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.classList.remove("dark");
-    localStorage.setItem('theme', 'light');
+    localStorage.setItem("theme", "light");
   }
-
-  console.log(('theme' in localStorage));
 };
 
 const AppProvider = ({ children }) => {
@@ -33,7 +32,6 @@ const AppProvider = ({ children }) => {
   //Call Dark mode
   useEffect(() => {
     darkModeSupport();
-    console.log(state.theme);
   }, []);
 
   const toggleColorScheme = () => {
@@ -41,7 +39,7 @@ const AppProvider = ({ children }) => {
     if (document.documentElement.classList.contains("dark")) {
       localStorage.setItem("theme", "dark");
     } else {
-      localStorage.setItem("theme", 'light');
+      localStorage.setItem("theme", "light");
     }
   };
 

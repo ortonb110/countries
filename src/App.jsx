@@ -1,12 +1,19 @@
-import { useAppContext } from "./Contexts/AppContext"
+import NavBar from "./Components/NavBar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import CountryDetails from "./Pages/CountryDetails";
+
 
 function App() {
- const {toggleColorScheme} = useAppContext();
+ 
   return (
-    <div className="dark:bg-black dark:text-white bg-white text-black">
-      <h1 className="text-black">Hello world!</h1>
-       <button onClick={toggleColorScheme}>Dark</button>
-    </div>
+      <Router>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/country" element={<CountryDetails/>}/>
+        </Routes>
+      </Router>
   )
 }
 
