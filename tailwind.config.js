@@ -16,6 +16,7 @@ export default {
         darkMode: "var(--color-text-dark-mode-white)",
         lightMode: "var(--color-text-light-mode-blue)",
       },
+      
     },
   },
   plugins: [],

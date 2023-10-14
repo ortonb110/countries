@@ -1,9 +1,10 @@
 import Loader from "../Components/Loader";
 import { useAppContext } from "../Contexts/AppContext";
 import { useEffect } from "react";
+import Card from "../Components/Card";
 const Home = () => {
 
-    const {isLoading, getCountriesData} = useAppContext();
+    const {isLoading, getCountriesData, data} = useAppContext();
 
     useEffect(()=> {
         getCountriesData()
@@ -19,7 +20,7 @@ const Home = () => {
 
   return (
     <section className="h-[calc(100vh-82px)] bg-[#FAFAFA] dark:bg-darkMode dark:text-darkMode  text-lightMode ">
-      
+    <Card/>
     </section>
   );
 };

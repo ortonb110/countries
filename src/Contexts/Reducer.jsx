@@ -27,6 +27,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+      data: action.payload.data
     };
   }
   if (action.type === FETCH_ERROR) {
