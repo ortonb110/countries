@@ -8,7 +8,7 @@ const Moon = () => {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-6 h-6"
+      className="w-[16px] h-[16px]"
     >
       <path
         stroke-linecap="round"
