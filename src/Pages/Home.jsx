@@ -1,8 +1,8 @@
 const Home = () => {
   return (
-    <div className="dark:bg-black dark:text-white bg-white text-black">
-      <h1 className="text-black">Hello world!</h1>
-    </div>
+    <section className="h-[calc(100vh-82px)] bg-[#FAFAFA] dark:bg-darkMode dark:text-darkMode  text-lightMode ">
+      <h1>home</h1>
+    </section>
   );
 };
 
