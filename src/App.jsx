@@ -1,13 +1,12 @@
-
+import { useAppContext } from "./Contexts/AppContext"
 
 function App() {
- 
-
+ const {toggleColorScheme} = useAppContext();
   return (
-    <>
-      <h1>Hello world!</h1>
-       
-    </>
+    <div className="dark:bg-black dark:text-white bg-white text-black">
+      <h1 className="text-black">Hello world!</h1>
+       <button onClick={toggleColorScheme}>Dark</button>
+    </div>
   )
 }
 
