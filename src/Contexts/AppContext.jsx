@@ -33,9 +33,10 @@ const AppProvider = ({ children }) => {
   const getCountriesData = async () => {
     dispatch({type: FETCH_BEGIN});
     try {
-      const {data} = await axios.get('https://restcountries.com/v3.1/independent?status=true');
-      dispatch({type: FETCH_SUCCESS, payload: data})
-      console.log(data);
+      const {data} = await axios.get('https://restcountries.com/v2/all');
+      
+      dispatch({type: FETCH_SUCCESS, payload: {data}})
+      
     } catch (error) {
       dispatch({type: FETCH_ERROR})
       console.log(error);

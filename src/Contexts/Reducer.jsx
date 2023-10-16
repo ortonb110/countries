@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   if (action.type === LIGHT) {
     return {
       ...state,
-      theme: "LIGHT",
+      theme: "light",
     };
   }
   if (action.type === FETCH_BEGIN) {
@@ -27,7 +27,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      data: action.payload.data
+      countries: action.payload.data
     };
   }
   if (action.type === FETCH_ERROR) {

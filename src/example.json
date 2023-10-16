@@ -1,0 +1,59 @@
+{
+    "name": "Aruba",
+    "topLevelDomain": [".aw"],
+    "alpha2Code": "AW",
+    "alpha3Code": "ABW",
+    "callingCodes": ["297"],
+    "capital": "Oranjestad",
+    "altSpellings": ["AW"],
+    "subregion": "Caribbean",
+    "region": "Americas",
+    "population": 106766,
+    "latlng": [12.5, -69.96666666],
+    "demonym": "Aruban",
+    "area": 180,
+    "timezones": ["UTC-04:00"],
+    "nativeName": "Aruba",
+    "numericCode": "533",
+    "flags": {
+      "svg": "https://flagcdn.com/aw.svg",
+      "png": "https://flagcdn.com/w320/aw.png"
+    },
+    "currencies": [
+      {
+        "code": "AWG",
+        "name": "Aruban florin",
+        "symbol": "ƒ"
+      }
+    ],
+    "languages": [
+      {
+        "iso639_1": "nl",
+        "iso639_2": "nld",
+        "name": "Dutch",
+        "nativeName": "Nederlands"
+      },
+      {
+        "iso639_1": "pa",
+        "iso639_2": "pan",
+        "name": "(Eastern) Punjabi",
+        "nativeName": "ਪੰਜਾਬੀ"
+      }
+    ],
+    "translations": {
+      "br": "Aruba",
+      "pt": "Aruba",
+      "nl": "Aruba",
+      "hr": "Aruba",
+      "fa": "آروبا",
+      "de": "Aruba",
+      "es": "Aruba",
+      "fr": "Aruba",
+      "ja": "アルバ",
+      "it": "Aruba",
+      "hu": "Aruba"
+    },
+    "flag": "https://flagcdn.com/aw.svg",
+    "cioc": "ARU",
+    "independent": true
+  }
