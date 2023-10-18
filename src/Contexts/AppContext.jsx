@@ -32,15 +32,15 @@ const AppProvider = ({ children }) => {
 
   const getCountriesData = async () => {
     dispatch({type: FETCH_BEGIN});
-    try {
-      const {data} = await axios.get('https://restcountries.com/v2/all');
+    // try {
+    //   const {data} = await axios.get('https://restcountries.com/v2/all');
       
-      dispatch({type: FETCH_SUCCESS, payload: {data}})
+    //   dispatch({type: FETCH_SUCCESS, payload: {data}})
       
-    } catch (error) {
-      dispatch({type: FETCH_ERROR})
-      console.log(error);
-    }
+    // } catch (error) {
+    //   dispatch({type: FETCH_ERROR})
+    //   console.log(error);
+    // }
   }
 
   //Call Dark mode

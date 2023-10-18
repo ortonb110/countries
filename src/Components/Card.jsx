@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
+
+
+
 const Card = ({name, population, flags, region, capital}) => {
   const {svg} = flags
 
   return (
-    <div className="mx-auto w-[26.4rem] h-[33.6rem] dark:bg-darkElement bg-[#FFFF] rounded-[5px] shadow-md shadow-gray-300 dark:shadow-none cursor-pointer overflow-hidden ">
+    <div className="transition ease-in-out duration-150 hover:scale-110 mx-auto w-[26.4rem] h-[33.6rem] dark:bg-darkElement bg-[#FFFF] rounded-[5px] shadow-md shadow-gray-300 dark:shadow-none cursor-pointer overflow-hidden ">
       <div className="h-[16rem]">
         <img src={svg} alt={name} className="h-full w-full  object-cover"/>
       </div>
