@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-import { DARK, LIGHT, FETCH_BEGIN, FETCH_SUCCESS, FETCH_ERROR } from "./Actions";
+import { DARK, LIGHT, FETCH_BEGIN, FETCH_SUCCESS, FETCH_ERROR, HANDLE_INPUT } from "./Actions";
 
 const reducer = (state, action) => {
   if (action.type === DARK) {
@@ -34,6 +34,12 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+    };
+  }
+  if (action.type === HANDLE_INPUT) {
+    return {
+      ...state,
+      searchText: action.payload.searchInput,
     };
   }
 };
