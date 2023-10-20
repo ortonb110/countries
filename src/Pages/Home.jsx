@@ -8,7 +8,7 @@ const Home = () => {
 
   const handleInput = (e) => {
     handleChangeInput({searchInput: e.target.value})
-    console.log(searchText);
+    
   }
 
   //console.log(countries[0].name);
