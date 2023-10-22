@@ -4,14 +4,19 @@
 import React, { useContext, useReducer, useState, useEffect } from "react";
 import reducer from "./Reducer";
 import axios from "axios";
-import { FETCH_BEGIN, FETCH_SUCCESS, FETCH_ERROR, HANDLE_INPUT } from "./Actions";
+import {
+  FETCH_BEGIN,
+  FETCH_SUCCESS,
+  FETCH_ERROR,
+  HANDLE_INPUT,
+} from "./Actions";
 const AppContext = React.createContext();
 
 const initialState = {
   theme: "",
   isLoading: false,
   countries: [],
-  searchText: '',
+  searchText: "",
 };
 
 //Support for Operating system Color Scheme
@@ -31,19 +36,17 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getCountriesData = async () => {
-    dispatch({ type: FETCH_BEGIN });
+    // dispatch({ type: FETCH_BEGIN });
     // try {
     //   const {data} = await axios.get('https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital');
-
     //   dispatch({type: FETCH_SUCCESS, payload: {data}})
-
     // } catch (error) {
     //   dispatch({type: FETCH_ERROR})
     //   console.log(error);
     // }
   };
 
-  const searchCountry = async ({ search }) => {
+  const searchCountry = async (search) => {
     dispatch({ type: FETCH_BEGIN });
     try {
       const { data } = await axios.get(
@@ -59,6 +62,7 @@ const AppProvider = ({ children }) => {
   //Call Dark mode
   useEffect(() => {
     darkModeSupport();
+    getCountriesData();
   }, []);
 
   const toggleColorScheme = () => {
@@ -73,13 +77,20 @@ const AppProvider = ({ children }) => {
     console.log(state.theme);
   };
 
-  const handleChangeInput = ({searchInput}) => {
-    dispatch({type: HANDLE_INPUT, payload: {searchInput}})
-  }
+  const handleChangeInput = ({ searchInput }) => {
+    dispatch({ type: HANDLE_INPUT, payload: { searchInput } });
+  };
 
   return (
     <AppContext.Provider
-      value={{ ...state, dispatch, toggleColorScheme, getCountriesData, searchCountry, handleChangeInput }}
+      value={{
+        ...state,
+        dispatch,
+        toggleColorScheme,
+        getCountriesData,
+        searchCountry,
+        handleChangeInput,
+      }}
     >
       {children}
     </AppContext.Provider>

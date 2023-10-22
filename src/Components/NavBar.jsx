@@ -7,7 +7,7 @@ const NavBar = () => {
   const { toggleColorScheme } = useAppContext();
 
   return (
-    <nav className="dark:bg-darkElement dark:text-darkMode text-lightMode bg-white w-full flex justify-between py-[3rem] px-[1.6rem] md:py-[2.3rem] md:px-[8.1rem] font-[800] text-[1.4rem] md:text-[2.4rem]">
+    <nav className="dark:bg-darkElement dark:text-darkMode text-lightMode bg-white w-full flex justify-between py-[3rem] px-[1.6rem] md:py-[2.3rem] md:px-[8rem] font-[800] text-[1.4rem] md:text-[2.4rem]">
       <NavLink to={"/"}>Where in the world?</NavLink>
       <button
         onClick={toggleColorScheme}
