@@ -32,12 +32,13 @@ const Home = () => {
   return (
     <section className=" m-auto h-[calc(100vh-82px)] bg-[#FAFAFA] dark:bg-darkMode dark:text-darkMode  text-lightMode overflow-auto py-[4.8rem] px-[8.0rem] grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[7.5rem] gap-y-[7.5rem]">
       <div>
-        <div>
-          <BiSearchAlt2 />
-          <input className="text-black"
+        <div className="flex items-center w-[48rem] h-[5.6rem] relative ">
+          <BiSearchAlt2 className="w-[1.8rem] h-[1.8rem] absolute "/>
+          <input className="outline-none bg-white text-[#848484] dark:text-white w-full h-full rounded-[5px] py-[1.8rem] px-[3.2rem] font-normal text-[1.4rem] placeholder:text-[#848484] dark:placeholder:text-white dark:bg-[#2B3844]"
             type="text"
             value={searchText}
             onChange={handleInput}
+            placeholder="Search for a country"
           />
         </div>
       </div>
