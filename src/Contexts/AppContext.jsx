@@ -51,7 +51,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const searchCountry = (search) => {
+  const searchCountries = (search) => {
     // dispatch({ type: FETCH_BEGIN });
     // try {
     //   const { data } = await axios.get(
@@ -62,11 +62,16 @@ const AppProvider = ({ children }) => {
     //   dispatch({ type: FETCH_ERROR });
     //   console.log(error);
     // }
-    let searchResult = state.countries.filter((country) => {
-      return country.name.toLowerCase().includes(search.toLowerCase());
-    });
+    let searchResult;
+    try {
+      searchResult = state.countries.filter((country) => {
+        return country.name.toLowerCase().includes(search.toLowerCase());
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
-    if (searchResult.length > 0) {
+    if (searchResult) {
       dispatch({ type: SEARCH_SUCCESS, payload: { searchResult } });
     } else {
       searchResult = state.countries;
@@ -89,11 +94,10 @@ const AppProvider = ({ children }) => {
       localStorage.setItem("theme", "light");
       dispatch({ type: "LIGHT" });
     }
-    console.log(state.theme);
   };
 
   const handleChangeInput = (searchInput) => {
-    searchCountry(searchInput);
+    searchCountries(searchInput);
   };
 
   return (
@@ -103,7 +107,6 @@ const AppProvider = ({ children }) => {
         dispatch,
         toggleColorScheme,
         getCountriesData,
-        searchCountry,
         handleChangeInput,
       }}
     >

@@ -3,20 +3,14 @@ import Card from "../Components/Card";
 import CardSkeleton from "../Components/CardSkeleton";
 import SelectOptions from "../Components/SelectOptions";
 const Home = () => {
-  const {
-    searchText,
-    handleChangeInput,
-    countries,
-    isLoading,
-    searchCountry
-  } = useAppContext();
+  const { handleChangeInput, countries, isLoading, searchCountry } =
+    useAppContext();
 
   const handleInput = (e) => {
-    handleChangeInput({ searchInput: e.target.value });
+    handleChangeInput(e.target.value);
   };
 
   //console.log(countries[0].name);
-  
 
   if (isLoading) {
     return (
@@ -31,15 +25,15 @@ const Home = () => {
     );
   }
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    searchCountry(searchText)
-  }
+  // const onSubmitHandler = (e) => {
+  //   e.preventDefault();
+  //   searchCountry(searchText)
+  // }
 
   return (
     <section className=" m-auto h-[calc(100vh-82px)]  bg-[#FAFAFA] dark:bg-darkMode dark:text-darkMode  text-lightMode overflow-auto pt-[4.8rem] px-[8.0rem] ">
       <div className="flex justify-between mb-[2rem]">
-        <form className="relative w-[48rem]" onSubmit={onSubmitHandler}>
+        <div className="relative w-[48rem]">
           <div className="absolute left-0 inset-y-0 flex items-center pl-[3.2rem] pointer-events-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -59,11 +53,10 @@ const Home = () => {
           <input
             className="outline-none bg-white text-gray-500 dark:text-gray-400 w-[48rem] h-full rounded-[5px] px-[7.4rem]  py-[1.8rem] font-normal text-[1.4rem] placeholder:text-[#848484] dark:placeholder:text-white dark:bg-[#2B3844]"
             type="text"
-            value={searchText}
             onChange={handleInput}
             placeholder="Search for a country"
           />
-        </form>
+        </div>
         {/* <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -76,9 +69,13 @@ const Home = () => {
         <SelectOptions />
       </div>
       <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[7.5rem] gap-y-[7.5rem] m-auto">
-        {countries.map((country, index) => {
-          return <Card key={index} {...country} />;
-        })}
+        {searchCountry.length > 0
+          ? searchCountry.map((country, index) => {
+              return <Card key={index} {...country} />;
+            })
+          : countries.map((country, index) => {
+              return <Card key={index} {...country} />;
+            })}
       </div>
     </section>
   );
