@@ -1,5 +1,4 @@
 import { useAppContext } from "../Contexts/AppContext";
-import { useEffect } from "react";
 import Card from "../Components/Card";
 import CardSkeleton from "../Components/CardSkeleton";
 import SelectOptions from "../Components/SelectOptions";

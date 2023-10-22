@@ -9,6 +9,8 @@ import {
   FETCH_SUCCESS,
   FETCH_ERROR,
   HANDLE_INPUT,
+  SEARCH_SUCCESS,
+  SEARCH_FAILED,
 } from "./Actions";
 const AppContext = React.createContext();
 
@@ -17,6 +19,7 @@ const initialState = {
   isLoading: false,
   countries: [],
   searchText: "",
+  searchCountry: [],
 };
 
 //Support for Operating system Color Scheme
@@ -36,21 +39,10 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getCountriesData = async () => {
-    // dispatch({ type: FETCH_BEGIN });
-    // try {
-    //   const {data} = await axios.get('https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital');
-    //   dispatch({type: FETCH_SUCCESS, payload: {data}})
-    // } catch (error) {
-    //   dispatch({type: FETCH_ERROR})
-    //   console.log(error);
-    // }
-  };
-
-  const searchCountry = async (search) => {
     dispatch({ type: FETCH_BEGIN });
     try {
       const { data } = await axios.get(
-        `https://restcountries.com/v2/name/${search}`
+        "https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital"
       );
       dispatch({ type: FETCH_SUCCESS, payload: { data } });
     } catch (error) {
@@ -59,7 +51,30 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  //Call Dark mode
+  const searchCountry = (search) => {
+    // dispatch({ type: FETCH_BEGIN });
+    // try {
+    //   const { data } = await axios.get(
+    //     `https://restcountries.com/v2/name/${search}`
+    //   );
+    //   dispatch({ type: FETCH_SUCCESS, payload: { data } });
+    // } catch (error) {
+    //   dispatch({ type: FETCH_ERROR });
+    //   console.log(error);
+    // }
+    let searchResult = state.countries.filter((country) => {
+      return country.name.toLowerCase().includes(search.toLowerCase());
+    });
+
+    if (searchResult.length > 0) {
+      dispatch({ type: SEARCH_SUCCESS, payload: { searchResult } });
+    } else {
+      searchResult = state.countries;
+      dispatch({ type: SEARCH_FAILED, payload: searchResult });
+    }
+  };
+
+  //Call Dark mode and get countries from initial render
   useEffect(() => {
     darkModeSupport();
     getCountriesData();
@@ -77,8 +92,8 @@ const AppProvider = ({ children }) => {
     console.log(state.theme);
   };
 
-  const handleChangeInput = ({ searchInput }) => {
-    dispatch({ type: HANDLE_INPUT, payload: { searchInput } });
+  const handleChangeInput = (searchInput) => {
+    searchCountry(searchInput);
   };
 
   return (
