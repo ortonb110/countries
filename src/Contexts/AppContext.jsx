@@ -39,16 +39,16 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getCountriesData = async () => {
-    // dispatch({ type: FETCH_BEGIN });
-    // try {
-    //   const { data } = await axios.get(
-    //     "https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital"
-    //   );
-    //   dispatch({ type: FETCH_SUCCESS, payload: { data } });
-    // } catch (error) {
-    //   dispatch({ type: FETCH_ERROR });
-    //   console.log(error);
-    // }
+    dispatch({ type: FETCH_BEGIN });
+    try {
+      const { data } = await axios.get(
+        "https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital"
+      );
+      dispatch({ type: FETCH_SUCCESS, payload: { data } });
+    } catch (error) {
+      dispatch({ type: FETCH_ERROR });
+      console.log(error);
+    }
   };
 
   const searchCountries = (search) => {
@@ -87,9 +87,32 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const filterSearch = (filter) => {
+    let searchResult;
+    try {
+      searchResult = state.countries.filter((country) => {
+        return country.region.toLowerCase().includes(filter.toLowerCase());
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (searchResult) {
+      dispatch({ type: SEARCH_SUCCESS, payload: { searchResult } });
+    } else {
+      searchResult = state.countries;
+      dispatch({ type: SEARCH_FAILED, payload: searchResult });
+    }
+  }
+
   const handleChangeInput = (searchInput) => {
     searchCountries(searchInput);
   };
+
+
+  const handleFilter = (filter) => {
+    filterSearch(filter);
+  }
 
   return (
     <AppContext.Provider
@@ -99,6 +122,7 @@ const AppProvider = ({ children }) => {
         toggleColorScheme,
         getCountriesData,
         handleChangeInput,
+        handleFilter
       }}
     >
       {children}
