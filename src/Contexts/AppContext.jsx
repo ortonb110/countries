@@ -11,6 +11,7 @@ import {
   HANDLE_INPUT,
   SEARCH_SUCCESS,
   SEARCH_FAILED,
+  SINGLE_SUCCESS,
 } from "./Actions";
 const AppContext = React.createContext();
 
@@ -20,6 +21,7 @@ const initialState = {
   countries: [],
   searchText: "",
   searchCountry: [],
+  singleCountry: [],
 };
 
 //Support for Operating system Color Scheme
@@ -52,7 +54,6 @@ const AppProvider = ({ children }) => {
   };
 
   const searchCountries = (search) => {
-    
     let searchResult;
     try {
       searchResult = state.countries.filter((country) => {
@@ -74,6 +75,8 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     darkModeSupport();
     getCountriesData();
+    
+    
   }, []);
 
   const toggleColorScheme = () => {
@@ -103,16 +106,27 @@ const AppProvider = ({ children }) => {
       searchResult = state.countries;
       dispatch({ type: SEARCH_FAILED, payload: searchResult });
     }
-  }
+  };
 
   const handleChangeInput = (searchInput) => {
     searchCountries(searchInput);
   };
 
-
   const handleFilter = (filter) => {
     filterSearch(filter);
-  }
+  };
+
+  const getSingleCountry = async (name) => {
+    dispatch({ type: FETCH_BEGIN });
+    try {
+      const { data } = await axios.get(
+        `https://restcountries.com/v2/name/${name}?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital;fields=nativeName;fields=topLevelDomain;fields=subregion;fields=borders`
+      );
+      dispatch({type: SINGLE_SUCCESS, payload: {data}});
+    } catch (error) {
+      dispatch({ type: FETCH_ERROR });
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -122,7 +136,8 @@ const AppProvider = ({ children }) => {
         toggleColorScheme,
         getCountriesData,
         handleChangeInput,
-        handleFilter
+        handleFilter,
+        getSingleCountry
       }}
     >
       {children}

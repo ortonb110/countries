@@ -11,6 +11,7 @@ import {
   HANDLE_INPUT,
   SEARCH_SUCCESS,
   SEARCH_FAILED,
+  SINGLE_SUCCESS,
 } from "./Actions";
 
 const reducer = (state, action) => {
@@ -61,6 +62,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       countries: action.payload.searchResult,
+    };
+  }
+  if (action.type === SINGLE_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      singleCountry: action.payload.data,
     };
   }
 };

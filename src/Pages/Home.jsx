@@ -2,13 +2,16 @@ import { useAppContext } from "../Contexts/AppContext";
 import Card from "../Components/Card";
 import CardSkeleton from "../Components/CardSkeleton";
 import SelectOptions from "../Components/SelectOptions";
+import { NavLink } from "react-router-dom";
 const Home = () => {
-  const { handleChangeInput, countries, isLoading, searchCountry } =
+  const { handleChangeInput, countries, isLoading, searchCountry, getSingleCountry } =
     useAppContext();
 
   const handleInput = (e) => {
     handleChangeInput(e.target.value);
   };
+
+ 
 
   if (isLoading) {
     return (
@@ -53,10 +56,28 @@ const Home = () => {
       <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[7.5rem] gap-y-[7.5rem] m-auto">
         {searchCountry.length > 0
           ? searchCountry.map((country, index) => {
-              return <Card key={index} {...country} />;
+              return (
+                <NavLink
+                  to={"/country"}
+                  key={index}
+                  onClick={() => getSingleCountry(country.name)}
+                >
+                  {" "}
+                  <Card {...country} />
+                </NavLink>
+              );
             })
           : countries.map((country, index) => {
-              return <Card key={index} {...country} />;
+              return (
+                <NavLink
+                  to={"/country"}
+                  key={index}
+                  onClick={() => getSingleCountry(country.name)}
+                >
+                  {" "}
+                  <Card {...country} />
+                </NavLink>
+              );
             })}
       </div>
     </section>
