@@ -39,29 +39,20 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getCountriesData = async () => {
-    dispatch({ type: FETCH_BEGIN });
-    try {
-      const { data } = await axios.get(
-        "https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital"
-      );
-      dispatch({ type: FETCH_SUCCESS, payload: { data } });
-    } catch (error) {
-      dispatch({ type: FETCH_ERROR });
-      console.log(error);
-    }
-  };
-
-  const searchCountries = (search) => {
     // dispatch({ type: FETCH_BEGIN });
     // try {
     //   const { data } = await axios.get(
-    //     `https://restcountries.com/v2/name/${search}`
+    //     "https://restcountries.com/v2/all?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital"
     //   );
     //   dispatch({ type: FETCH_SUCCESS, payload: { data } });
     // } catch (error) {
     //   dispatch({ type: FETCH_ERROR });
     //   console.log(error);
     // }
+  };
+
+  const searchCountries = (search) => {
+    
     let searchResult;
     try {
       searchResult = state.countries.filter((country) => {
