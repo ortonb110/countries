@@ -75,8 +75,6 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     darkModeSupport();
     getCountriesData();
-    
-    
   }, []);
 
   const toggleColorScheme = () => {
@@ -122,7 +120,7 @@ const AppProvider = ({ children }) => {
       const { data } = await axios.get(
         `https://restcountries.com/v2/name/${name}?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital;fields=nativeName;fields=topLevelDomain;fields=subregion;fields=borders`
       );
-      dispatch({type: SINGLE_SUCCESS, payload: {data}});
+      dispatch({ type: SINGLE_SUCCESS, payload: { data } });
     } catch (error) {
       dispatch({ type: FETCH_ERROR });
     }
@@ -137,7 +135,7 @@ const AppProvider = ({ children }) => {
         getCountriesData,
         handleChangeInput,
         handleFilter,
-        getSingleCountry
+        getSingleCountry,
       }}
     >
       {children}
