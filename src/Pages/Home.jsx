@@ -11,7 +11,7 @@ const Home = () => {
     isLoading,
     searchCountry,
     getSingleCountry,
-    fetchError,
+
     loadFailed,
   } = useAppContext();
 
@@ -19,7 +19,10 @@ const Home = () => {
     handleChangeInput(e.target.value);
   };
 
-
+  const getSinglePageName = (name) => {
+    localStorage.setItem("pageName", name);
+    
+  };
 
   if (isLoading) {
     return (
@@ -41,7 +44,7 @@ const Home = () => {
           type="button"
           whileTap={{ scale: 0.97 }}
           className="flex items-center gap-[10px] text-[1.6rem] capitalize pr-[3.9rem] pl-[3.2rem] py-[1rem] dark:bg-[#2B3844] rounded-[5px]"
-          onClick={()=> window.location.reload()}
+          onClick={() => window.location.reload()}
         >
           <span>reload</span>
         </motion.button>
@@ -86,7 +89,7 @@ const Home = () => {
                 <NavLink
                   to={"/country"}
                   key={index}
-                  onClick={() => getSingleCountry(country.name)}
+                  onClick={() => getSinglePageName(country.name)}
                 >
                   {" "}
                   <Card {...country} />
@@ -98,7 +101,7 @@ const Home = () => {
                 <NavLink
                   to={"/country"}
                   key={index}
-                  onClick={() => getSingleCountry(country.name)}
+                  onClick={() => getSinglePageName(country.name)}
                 >
                   {" "}
                   <Card {...country} />

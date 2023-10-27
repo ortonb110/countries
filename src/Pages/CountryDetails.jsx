@@ -1,11 +1,24 @@
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { useAppContext } from "../Contexts/AppContext";
+import { useEffect } from "react";
 const CountryDetails = () => {
-  const { singleCountry, isLoading } = useAppContext();
+  const { singleCountry, isLoading, getSingleCountry } = useAppContext();
   // const {flags, capital, name, nativeName, borders, population, subregion, region, } = singleCountry
   // const {svg} = flags
-  console.log(singleCountry);
+  const data = singleCountry[0]
+  if(data) {
+    var {flags: {svg}, capital, name, nativeName, borders, population, subregion, region, currencies, languages} = data
+    var currency = currencies[0];
+    console.log(currency.name, languages);
+  } 
+
+  useEffect(()=> {
+    getSingleCountry();
+  }, [])
+
+
+
   if (isLoading) {
     return (
       <div className="m-auto h-[calc(100vh-82px)]  bg-[#FAFAFA] dark:bg-darkMode dark:text-darkMode  text-lightMode overflow-auto pt-[4.8rem] px-[8.0rem]">
@@ -40,9 +53,29 @@ const CountryDetails = () => {
           <span>back</span>
         </motion.button>
       </NavLink>
-      <div className="">
-        <img src='' alt=''></img>
-        <div></div>
+      <div className=" mt-[8rem] flex flex-col lg:flex-row">
+        <img src={svg} alt={name} className="w-[56rem] h-[40.1rem] rounded-[5px]"/>
+        <div>
+          <h1>{name}</h1>
+          <div>
+            <section>
+              <p><span>native name</span><span>{nativeName}</span></p>
+              <p><span>population</span><span>{population}</span></p>
+              <p><span>region</span><span>{region}</span></p>
+              <p><span>sub region</span><span>{subregion}</span></p>
+              <p><span>capital</span><span>{capital}</span></p>
+            </section>
+            <section>
+            <p><span>top level domain</span><span>{nativeName}</span></p>
+              <p><span>currencies</span><span>{currency && currency.name}</span></p>
+              {/* <p><span>languages</span><ul>{
+                  languages && languages.map((lan, index)=> {
+                    return <li key={index}>{lan}</li>
+                  })
+                }</ul></p> */}
+            </section>
+          </div>
+        </div>
       </div>
     </section>
   );

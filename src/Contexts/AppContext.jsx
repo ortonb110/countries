@@ -55,6 +55,9 @@ const AppProvider = ({ children }) => {
     }
   };
 
+
+
+
   const searchCountries = (search) => {
     let searchResult;
     try {
@@ -116,12 +119,13 @@ const AppProvider = ({ children }) => {
     filterSearch(filter);
   };
 
-  const getSingleCountry = async (name) => {
+  const getSingleCountry = async () => {
     dispatch({ type: FETCH_BEGIN });
     try {
       const { data } = await axios.get(
-        `https://restcountries.com/v2/name/${name}?fields=name;fields=currencies;fields=population;fields=flags;fields=region;fields=capital;fields=nativeName;fields=topLevelDomain;fields=subregion;fields=borders`
+        `https://restcountries.com/v2/name/${localStorage.pageName}`
       );
+      
       dispatch({ type: SINGLE_SUCCESS, payload: { data } });
     } catch (error) {
       dispatch({ type: FETCH_ERROR });
