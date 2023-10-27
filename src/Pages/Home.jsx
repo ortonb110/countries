@@ -3,15 +3,23 @@ import Card from "../Components/Card";
 import CardSkeleton from "../Components/CardSkeleton";
 import SelectOptions from "../Components/SelectOptions";
 import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 const Home = () => {
-  const { handleChangeInput, countries, isLoading, searchCountry, getSingleCountry } =
-    useAppContext();
+  const {
+    handleChangeInput,
+    countries,
+    isLoading,
+    searchCountry,
+    getSingleCountry,
+    fetchError,
+    loadFailed,
+  } = useAppContext();
 
   const handleInput = (e) => {
     handleChangeInput(e.target.value);
   };
 
- 
+
 
   if (isLoading) {
     return (
@@ -19,6 +27,24 @@ const Home = () => {
         {[0, 1, 2, 3, 4, 5, 6, 7].map((item, index) => {
           return <CardSkeleton key={index} />;
         })}
+      </div>
+    );
+  }
+
+  if (loadFailed) {
+    return (
+      <div className="h-[calc(100vh-82px)] bg-[#FAFAFA] dark:bg-darkMode dark:text-darkMode  text-lightMode  py-[4.8rem] px-[8.0rem] flex items-center justify-center flex-col">
+        <p className="uppercase font-bold text-[3rem] tracking-[0.5rem]">
+          Check internet connection
+        </p>
+        <motion.button
+          type="button"
+          whileTap={{ scale: 0.97 }}
+          className="flex items-center gap-[10px] text-[1.6rem] capitalize pr-[3.9rem] pl-[3.2rem] py-[1rem] dark:bg-[#2B3844] rounded-[5px]"
+          onClick={()=> window.location.reload()}
+        >
+          <span>reload</span>
+        </motion.button>
       </div>
     );
   }

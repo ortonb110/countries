@@ -22,6 +22,8 @@ const initialState = {
   searchText: "",
   searchCountry: [],
   singleCountry: [],
+  fetchError: '',
+  loadFailed: false
 };
 
 //Support for Operating system Color Scheme
@@ -48,8 +50,8 @@ const AppProvider = ({ children }) => {
       );
       dispatch({ type: FETCH_SUCCESS, payload: { data } });
     } catch (error) {
-      dispatch({ type: FETCH_ERROR });
-      console.log(error);
+      const errorMessage = error.message
+      dispatch({type: FETCH_ERROR, payload: {errorMessage}})
     }
   };
 

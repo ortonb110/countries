@@ -44,6 +44,8 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+      fetchError: action.payload.errorMessage,
+      loadFailed: true
     };
   }
   if (action.type === HANDLE_INPUT) {
