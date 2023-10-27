@@ -53,21 +53,21 @@ const CountryDetails = () => {
           <span>back</span>
         </motion.button>
       </NavLink>
-      <div className=" mt-[8rem] flex flex-col lg:flex-row">
-        <img src={svg} alt={name} className="w-[56rem] h-[40.1rem] rounded-[5px]"/>
-        <div>
-          <h1>{name}</h1>
-          <div>
+      <div className=" mt-[8rem] flex flex-col lg:flex-row lg:gap-[12rem]">
+        <img src={svg} alt={name} className="w-[56rem] h-[40.1rem] rounded-[5px] object-cover"/>
+        <div className="py-[3.9rem] px-[10rem]">
+          <h1 className="font-extrabold text-[3.2rem] ">{name}</h1>
+          <div className="text-[1.6rem] capitalize ">
             <section>
-              <p><span>native name</span><span>{nativeName}</span></p>
-              <p><span>population</span><span>{population}</span></p>
-              <p><span>region</span><span>{region}</span></p>
-              <p><span>sub region</span><span>{subregion}</span></p>
-              <p><span>capital</span><span>{capital}</span></p>
+              <p className="flex gap-1"><span className="font-semibold">native name:</span><span>{nativeName}</span></p>
+              <p className="flex gap-1"><span className="font-semibold">population:</span><span>{population}</span></p>
+              <p className="flex gap-1"><span className="font-semibold">region:</span><span>{region}</span></p>
+              <p className="flex gap-1"><span className="font-semibold">sub region:</span><span>{subregion}</span></p>
+              <p className="flex gap-1"><span className="font-semibold">capital:</span><span>{capital}</span></p>
             </section>
             <section>
-            <p><span>top level domain</span><span>{nativeName}</span></p>
-              <p><span>currencies</span><span>{currency && currency.name}</span></p>
+            <p className="flex flex gap-1"><span>top level domain:</span><span>{nativeName}</span></p>
+              <p className="flex flex gap-1"><span>currencies:</span><span>{currency && currency.name}</span></p>
               {/* <p><span>languages</span><ul>{
                   languages && languages.map((lan, index)=> {
                     return <li key={index}>{lan}</li>
