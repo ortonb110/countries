@@ -8,7 +8,7 @@ const CountryDetails = () => {
   // const {svg} = flags
   const data = singleCountry[0]
   if(data) {
-    var {flags: {svg}, capital, name, nativeName, borders, population, subregion, region, currencies, languages} = data
+    var {flags: {svg}, capital, name, nativeName, borders, population, subregion, region, currencies, languages, topLevelDomain} = data
     var currency = currencies[0];
     console.log(currency.name, languages);
   } 
@@ -55,19 +55,19 @@ const CountryDetails = () => {
       </NavLink>
       <div className=" mt-[8rem] flex flex-col lg:flex-row lg:gap-[12rem]">
         <img src={svg} alt={name} className="w-[56rem] h-[40.1rem] rounded-[5px] object-cover"/>
-        <div className="py-[3.9rem] px-[10rem]">
-          <h1 className="font-extrabold text-[3.2rem] ">{name}</h1>
-          <div className="text-[1.6rem] capitalize ">
-            <section>
+        <div className="py-[3.9rem] px-[5rem] relative w-full">
+          <h1 className="font-extrabold text-[3.2rem] mb-[2.3rem]">{name}</h1>
+          <div className="text-[1.6rem] capitalize flex gap-[8rem]">
+            <section className="leading-[3.2rem]">
               <p className="flex gap-1"><span className="font-semibold">native name:</span><span>{nativeName}</span></p>
               <p className="flex gap-1"><span className="font-semibold">population:</span><span>{population}</span></p>
               <p className="flex gap-1"><span className="font-semibold">region:</span><span>{region}</span></p>
               <p className="flex gap-1"><span className="font-semibold">sub region:</span><span>{subregion}</span></p>
               <p className="flex gap-1"><span className="font-semibold">capital:</span><span>{capital}</span></p>
             </section>
-            <section>
-            <p className="flex flex gap-1"><span>top level domain:</span><span>{nativeName}</span></p>
-              <p className="flex flex gap-1"><span>currencies:</span><span>{currency && currency.name}</span></p>
+            <section className="leading-[3.2rem]">
+            <p className="flex  gap-1"><span className="font-semibold">top level domain:</span><span className="lowercase">{topLevelDomain}</span></p>
+              <p className="flex gap-1"><span className="font-semibold">currencies:</span><span>{currency && currency.name}</span></p>
               {/* <p><span>languages</span><ul>{
                   languages && languages.map((lan, index)=> {
                     return <li key={index}>{lan}</li>
@@ -75,7 +75,11 @@ const CountryDetails = () => {
                 }</ul></p> */}
             </section>
           </div>
+          <div className="absolute bottom-0">
+                <p>hello</p>
+          </div>
         </div>
+        <div></div>
       </div>
     </section>
   );
